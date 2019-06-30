@@ -117,13 +117,13 @@ export default class Body extends React.Component {
           <View style={styles.resultIcon}>
             <Lottie
               loop={false}
-              ref={animation => {
-                this.animation = animation;
+              ref={anim => {
+                this.animation = anim;
               }}
               source={animation}
             />
           </View>
-          <View>
+          <View style={{ flex: 1 }}>
             <Text style={[styles.alert, accessStyles.alert]}>{alert}</Text>
             <Text style={styles.message}>{message}</Text>
           </View>
