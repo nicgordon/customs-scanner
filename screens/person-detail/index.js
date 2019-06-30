@@ -2,8 +2,9 @@ import _ from 'lodash';
 import { View } from 'react-native';
 import * as React from 'react';
 
+import arrivalIconImage from '../../assets/images/arrival-icon.png';
 import Body from './components/body';
-import Header from './components/header';
+import Header from '../../components/header';
 
 const RESET_SCREEN_DELAY = 10000;
 
@@ -22,11 +23,15 @@ export default class PersonDetailScreen extends React.Component {
     clearTimeout(this.timeout);
     this.props.reset();
   }
-  
+
   render() {
     return (
       <View onPress={this.reset} style={{ flex: 1 }}>
-        <Header />
+        <Header
+          foreignText="Llegadas"
+          image={arrivalIconImage}
+          localText="Arrivals"
+        />
         <Body {...this.props} />
       </View>
     );

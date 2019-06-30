@@ -1,4 +1,4 @@
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
 
 const styles = StyleSheet.create({
@@ -37,18 +37,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Header extends React.Component {
-  render() {
-    return (
-      <View style={styles.header}>
-        <View style={styles.icon}>
-          <Image source={require('../../../../assets/images/arrival-icon.png')} style={styles.image} />
-        </View>
-        <View>
-          <Text style={styles.foreign}>Llegadas</Text>
-          <Text style={styles.local}>Arrivals</Text>
-        </View>
-      </View>
-    );
-  }
-}
+export default ({ foreignText, image, localText }) => (
+  <View style={styles.header}>
+    <View style={styles.icon}>
+      <Image source={image} style={styles.image} />
+    </View>
+    <View>
+      <Text style={styles.foreign}>{foreignText}</Text>
+      <Text style={styles.local}>{localText}</Text>
+    </View>
+  </View>
+);
