@@ -7,6 +7,7 @@ import * as React from 'react';
 
 import env from './environment';
 import getPassengerDetails from './utils/get-passenger-details';
+import BarCodeScannerScreen from './screens/barcode-scanner';
 import LoadingScreen from './screens/loading';
 import PersonDetailScreen from './screens/person-detail';
 
@@ -100,13 +101,7 @@ export default class CustomsScanner extends React.Component {
         <StatusBar hidden />
         {scanned
           ? <PersonDetailScreen reset={this.reset} {...passenger} />
-          : (
-            <BarCodeScanner
-              onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
-              style={StyleSheet.absoluteFillObject}
-              type={BarCodeScanner.Constants.Type.front}
-            />
-          )
+          : <BarCodeScannerScreen onBarCodeScanned={this.handleBarCodeScanned} scanned={scanned} />
         }
       </View>
     )
