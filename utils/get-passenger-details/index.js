@@ -8,7 +8,7 @@ const defaultValue = {
   message: 'We’re going to allow it',
   name: 'Unknown',
   nationality: 'Unknown',
-  occupation: 'Professional gatecrasher',
+  occupation: 'Gatecrasher',
 };
 
 export default (uuid, passengers) =>
