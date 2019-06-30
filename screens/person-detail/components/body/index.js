@@ -1,12 +1,10 @@
-import { DangerZone } from 'expo';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
+import Lottie from 'lottie-react-native';
 
 import crossAnimation from '../../../../assets/animations/cross.json';
 // import questionMarkAnimation from '../../../../assets/animations/question-mark.json';
 import tickAnimation from '../../../../assets/animations/tick.json';
-
-const { Lottie } = DangerZone;
 
 const accessColors = {
   denied: {
@@ -85,7 +83,7 @@ export default class Body extends React.Component {
   componentDidMount() {
     this.animation.play();
   }
- 
+
   render() {
     const { access, alert, gender, image, message, name, nationality, occupation } = this.props;
 
@@ -101,7 +99,7 @@ export default class Body extends React.Component {
     return (
       <View style={[styles.body, accessStyles.body]}>
         <View style={styles.information}>
-          <Image source={{uri: image}} style={styles.image} />
+          <Image source={{ uri: image }} style={styles.image} />
           <View>
             <Text style={styles.name}>{name}</Text>
 
