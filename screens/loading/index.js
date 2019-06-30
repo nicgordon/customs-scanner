@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     width: 100,
   },
   message: {
-    fontFamily: 'sans-serif',
     fontSize: 12,
     marginTop: 20,
   },
