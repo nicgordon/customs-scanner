@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "^33.0.0",
+    "expo-barcode-scanner": "^5.0.1",
     "expo-font": "^5.0.1",
     "lodash": "4.17.11",
     "lottie-react-native": "^2.6.1",
