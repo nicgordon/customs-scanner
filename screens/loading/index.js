@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Body extends React.Component {
+export default class LoadingScreen extends React.Component {
   componentDidMount() {
     this.animation.play();
   }
