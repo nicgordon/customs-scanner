@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import * as React from 'react';
 
 import arrivalIconImage from '../../assets/images/arrival-icon.png';
@@ -26,14 +26,16 @@ export default class PersonDetailScreen extends React.Component {
 
   render() {
     return (
-      <View onPress={this.reset} style={{ flex: 1 }}>
-        <Header
-          foreignText="Llegadas"
-          image={arrivalIconImage}
-          localText="Arrivals"
-        />
-        <Body {...this.props} />
-      </View>
+      <TouchableOpacity onPress={this.reset} style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
+          <Header
+            foreignText="Llegadas"
+            image={arrivalIconImage}
+            localText="Arrivals"
+          />
+          <Body {...this.props} />
+        </View>
+      </TouchableOpacity>
     );
   }
 }
