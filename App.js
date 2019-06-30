@@ -7,6 +7,7 @@ import * as React from 'react';
 
 import env from './environment';
 import getPassengerDetails from './utils/get-passenger-details';
+import LoadingScreen from './screens/loading';
 import PersonDetailScreen from './screens/person-detail';
 
 export default class CustomsScanner extends React.Component {
@@ -53,6 +54,24 @@ export default class CustomsScanner extends React.Component {
     }
   }
 
+  getLoadingMessage = () => {
+    const { hasCameraPermission, hasFontsLoaded, passengers } = this.state;
+
+    if (_.isNull(hasCameraPermission)) {
+      return 'Requesting for camera permission...';
+    }
+
+    if (hasFontsLoaded === false) {
+      return 'Waiting for fonts to load...';
+    }
+
+    if (_.isNull(passengers)) {
+      return 'Waiting for passenger data to load...';
+    }
+
+    return null;
+  }
+
   reset = () => {
     this.setState({ scanned: false, uuid: null });
   }
@@ -64,21 +83,15 @@ export default class CustomsScanner extends React.Component {
       return <Text>{error}</Text>;
     }
 
-    if (_.isNull(hasCameraPermission)) {
-      return <Text>Requesting for camera permission...</Text>;
+    const loadingMessage = this.getLoadingMessage();
+    if (!_.isNull(loadingMessage)) {
+      return <LoadingScreen message={loadingMessage} />;
     }
 
     if (hasCameraPermission === false) {
       return <Text>No access to camera.</Text>;
     }
 
-    if (hasFontsLoaded === false) {
-      return <Text>Waiting for fonts to load...</Text>;
-    }
-
-    if (_.isNull(passengers)) {
-      return <Text>Waiting for passenger data to load...</Text>;
-    }
 
     const passenger = scanned ? getPassengerDetails(uuid, passengers) : null;
 
