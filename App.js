@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, YellowBox } from 'react-native';
 import * as Font from 'expo-font'
 import * as Permissions from 'expo-permissions';
 import * as React from 'react';
@@ -23,6 +23,9 @@ export default class CustomsScanner extends React.Component {
   };
 
   async componentDidMount() {
+    // Ignore Lottie warning
+    YellowBox.ignoreWarnings(['ReactNative.NativeModules.LottieAnimationView.getConstants']);
+
     // Load fonts
     await Font.loadAsync({
       'alte-din': require('./assets/fonts/alte-din-regular.ttf'),
