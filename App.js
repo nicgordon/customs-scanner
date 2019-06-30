@@ -8,6 +8,7 @@ import * as React from 'react';
 import env from './environment';
 import getPassengerDetails from './utils/get-passenger-details';
 import BarCodeScannerScreen from './screens/barcode-scanner';
+import ErrorScreen from './screens/error';
 import LoadingScreen from './screens/loading';
 import PersonDetailScreen from './screens/person-detail';
 
@@ -55,6 +56,20 @@ export default class CustomsScanner extends React.Component {
     }
   }
 
+  getErrorMessage = () => {
+    const { error, hasCameraPermission } = this.state;
+
+    if (!_.isNull(error)) {
+      return error;
+    }
+
+    if (hasCameraPermission === false) {
+      return 'No access to camera.';
+    }
+
+    return null;
+  }
+
   getLoadingMessage = () => {
     const { hasCameraPermission, hasFontsLoaded, passengers } = this.state;
 
@@ -80,19 +95,15 @@ export default class CustomsScanner extends React.Component {
   render() {
     const { error, hasCameraPermission, hasFontsLoaded, passengers, scanned, uuid } = this.state;
 
-    if (!_.isNull(error)) {
-      return <Text>{error}</Text>;
+    const errorMessage = this.getErrorMessage();
+    if (!_.isNull(errorMessage)) {
+      return <ErrorScreen error={error} />;
     }
 
     const loadingMessage = this.getLoadingMessage();
     if (!_.isNull(loadingMessage)) {
       return <LoadingScreen message={loadingMessage} />;
     }
-
-    if (hasCameraPermission === false) {
-      return <Text>No access to camera.</Text>;
-    }
-
 
     const passenger = scanned ? getPassengerDetails(uuid, passengers) : null;
 
